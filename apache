@@ -16,7 +16,7 @@ else
  echo "Archive effectué avec succès"
 fi
 
-mv /root/livraison/*.zip $documentroot/$1/
+cp /root/livraison/*.zip $documentroot/$1/
 if [ $? != 0 ]; then 
  echo "Erreur lors du déplacement du livrable"
  exit 1
@@ -38,6 +38,15 @@ if [ $? != 0 ]; then
  exit 1
 else
  echo "Livrable décompréssé avec succès"
+fi
+
+echo " Supression du zip"
+rm -f *.zip
+if [ $? != 0 ]; then 
+ echo "Erreur lors de la supression du livrable"
+ exit 1
+else
+ echo "Livrable suprrimé avec succès"
 fi
 
 echo "Livraison terminé avec succès !"
