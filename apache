@@ -1,0 +1,12 @@
+set -x
+
+if [ -z $1 ]; then
+ echo "La variable contenant le site a traiter est vide"
+ echo " Rappel : ./script site "
+ exit 1
+fi
+
+documentroot=/var/www/html/
+
+tar czf $documentroot/$1.$(date +%Y%m%d).tar.gz $documentroot/$1
+
