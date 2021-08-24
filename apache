@@ -9,4 +9,36 @@ fi
 documentroot=/var/www/html/
 
 tar czf $documentroot/$1.$(date +%Y%m%d).tar.gz $documentroot/$1
+if [ $? != 0 ]; then 
+ echo "Erreur lors de la création de l'archive "
+ exit 1
+else
+ echo "Archive effectué avec succès"
+fi
 
+mv /root/livraison/*.zip $documentroot/$1/
+if [ $? != 0 ]; then 
+ echo "Erreur lors du déplacement du livrable"
+ exit 1
+else
+ echo "Livrable déplacé avec succès"
+fi
+
+cd $documentroot/$1/
+if [ $? != 0 ]; then 
+ echo "Erreur lors du déplacement dans le répertoir de destination"
+ exit 1
+else
+ echo "Déplacement dans le répertoir de livraison avec succès"
+fi
+
+unzip *.zip
+if [ $? != 0 ]; then 
+ echo "Erreur lors de la décompression du livrable"
+ exit 1
+else
+ echo "Livrable décompréssé avec succès"
+fi
+
+echo "Livraison terminé avec succès !"
+exit 0
